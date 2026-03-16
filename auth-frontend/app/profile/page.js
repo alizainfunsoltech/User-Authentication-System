@@ -125,6 +125,24 @@ export default function Profile() {
         return <div className="p-10 text-red-500">{error}</div>
     }
 
+    const logout = async () => {
+
+        try {
+
+            await API.post("logout/")
+
+            localStorage.removeItem("token")
+
+            router.push("/login")
+
+        } catch (err) {
+
+            console.log(err)
+
+        }
+
+    }
+
 
     return (
 
@@ -193,6 +211,13 @@ export default function Profile() {
                     </button>
 
                 </div>
+
+                <button
+                    className="w-full mt-4 bg-gray-800 hover:bg-gray-900 text-white p-2 rounded"
+                    onClick={logout}
+                >
+                    Logout
+                </button>
 
             </div>
 

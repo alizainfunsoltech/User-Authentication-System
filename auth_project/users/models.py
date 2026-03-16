@@ -15,3 +15,10 @@ class UserOTP(models.Model):
 
     def __str__(self):
         return self.user.username
+
+class UserSession(models.Model):
+
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    token = models.CharField(max_length=255)
+    device = models.CharField(max_length=100)
+    created = models.DateTimeField(auto_now_add=True)

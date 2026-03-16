@@ -91,8 +91,8 @@ class LoginSerializer(serializers.Serializer):
                 "email": user.email
             })
 
+        # token, created = Token.objects.get_or_create(user=user)
         token, created = Token.objects.get_or_create(user=user)
-
         return {
             "message": "Login successful",
             "token": token.key

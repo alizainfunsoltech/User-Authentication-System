@@ -212,3 +212,15 @@ class DeleteAccountView(APIView):
         return Response({
             "message": "Account deleted"
         })
+
+
+class LogoutView(APIView):
+    authentication_classes = [TokenAuthentication]
+    permission_classes = [IsAuthenticated]
+
+    def post(self, request):
+        request.user.auth_token.delete()
+
+        return Response({
+            "message": "Logged out successfully"
+        })
